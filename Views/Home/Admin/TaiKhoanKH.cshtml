@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_TaiKhoan>
+
+@{
+    ViewBag.Title = "TaiKhoanKH";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>TaiKhoanKH</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã Khách Hàng
+        </th>
+        <th>
+            Tên TK
+        </th>
+        <th>
+            Mật Khẩu
+        </th>
+        <th>
+            Họ
+        </th>
+        <th>
+            Tên
+        </th>
+        <th>
+            Địa Chỉ
+        </th>
+        <th>Tác Vụ</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaTK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaTK }) |
+                @Html.ActionLink("Details", "DetailsKH", new { id = item.MaTK }) |
+                @Html.ActionLink("Delete", "XoaKH", new { id = item.MaTK })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_Menu>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="cat-item cat-item-42" style="Text-align:left"><a href="@Url.Action("SPTheodanhmuc", "TrangChu", new { id = item.MaLoai })" >@item.TenLoai</a> <span class="count">(14)</span></li>
+
+    }
+</div>

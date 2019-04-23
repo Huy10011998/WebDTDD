@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "FacebookDangNhap";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script src="~/Scripts/Facebook.js"></script>
+
+<h1 style="color:orange">Xác Nhận Tiếp Tục Với Facebook</h1>
+<div style="height:50px"></div>
+<form action="@Url.Action("LoginWithGooglePlus", "Home")" method="post">
+    @Html.AntiForgeryToken()
+    <p><a href="javascript:;" class="btn btn-primary btn-lg lbtSignInFacebook">LOGIN FACEBOOK</a></p>
+</form>
+<div style="height:50px"></div>
+
+
+
+<script type="text/javascript">
+
+        $('.lbtSignInFacebook').click(function () {
+
+            Login();
+
+        })
+        $('.lbtLogOutFacebook').click(function () {
+
+            Logout();
+
+            //clear session here
+
+        })
+</script>
+
+

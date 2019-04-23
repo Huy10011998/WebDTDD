@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_HangHoa>
+
+@foreach (var item in Model)
+{
+    <ul class="product">
+        <li class="product_img"><img class="img-responsive" alt="" src="~/images/@item.HinhAnh"></li>
+        <li class="product_desc">
+            <h4 class="name"><a href="@Url.Action("Details", "TrangChu", new { id = item.MaHH})">@item.TenHH</a></h4>
+            <p class="single_price">@String.Format("{0:0,0}", @item.GiaBan)</p>
+            @*<a class="link-cart" href="#">Add to Wishlist</a>*@
+            <a class="link-cart" style="font-weight:bold" href="@Url.Action("ThemGioHang", "GioHang", new { @iMaHH = @item.MaHH, @strURL=Request.Url.ToString() })">Thêm Vào Giỏ</a>
+        </li>
+        <div class="clearfix"> </div>
+    </ul>
+}

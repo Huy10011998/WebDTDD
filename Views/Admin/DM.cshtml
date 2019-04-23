@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_Menu>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a class="collapse-item" href="@Url.Action("SPTheodanhmucAD", "Admin", new { id = item.MaLoai})">
+           @item.TenLoai
+        </a>
+    }
+</div>

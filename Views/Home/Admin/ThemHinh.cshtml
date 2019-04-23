@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "ThemHinh";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+@model ShopDTDD.Models.tb_HangHoa
+@using (Html.BeginForm("ThemHinh", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+<div class="form-group">
+    @Html.EditorFor(model => model.MaHH)
+    @Html.ValidationMessageFor(model => model.MaHH)
+</div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="file" name="fileUpload" placeholder="Chọn Hình Ảnh" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}

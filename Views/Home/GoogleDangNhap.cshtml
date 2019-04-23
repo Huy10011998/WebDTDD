@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "GoogleDangNhap";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1 style="color:orange">Xác Nhận Tiếp Tục Với Google</h1>
+<div style="height:50px"></div>
+<form action="@Url.Action("LoginWithGooglePlus", "Home")" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger"><i class="fa fa-google-plus"></i>  Login with Google + </button>
+</form>
+<div style="height:50px"></div>

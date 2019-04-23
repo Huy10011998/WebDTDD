@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_HinhAnh>
+
+
+    @foreach (var item in Model)
+    {
+        <li data-thumb="/images/@item.HinhAnh">
+        <img src="~/images/@item.HinhAnh" />
+    </li>    }
+

@@ -1,0 +1,30 @@
+﻿@foreach (var Hang in Model)
+{
+
+    
+    <div class="boder-thumbnail">
+
+        <div class="item" style="width:200px; height:250px:">
+            <a href="@Url.Action("Details", "TrangChu", new { id = Hang.MaHH})" />
+
+            <div class="hoverimage">
+                <img style="width:180px; height:180px"   alt="@Hang.TenHH" src="~/images/@Hang.HinhAnh" />
+            </div>
+
+
+            <div>
+                <br />
+                <h4 class="name">
+                    @Hang.TenHH
+                </h4>
+                <p></p>
+            </div>
+            <div class="ratings">
+                
+                <div class="pricex">@String.Format("{0:0,0}", Hang.GiaBan) đ </div>
+
+            </div>
+        </div>
+    </div>
+}
+

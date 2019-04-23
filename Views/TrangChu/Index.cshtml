@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<head>
+    <meta charset="utf-8">
+    <title>Owl Carousel - Custom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQuery Responsive Carousel - Owl Carusel">
+    <meta name="author" content="Bartosz Wojciechowski">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="~/css/bootstrapTheme.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet">
+    <!-- Owl Carousel Assets -->
+    <link href="~/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="~/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+</head>
+
+<!--Quảng cáo Banner-->
+<div class="owl-item" style="width=1200px">
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!-- Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item item1 active">
+                <div class="container">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>
+                            Get flat
+                            <span>10%</span> Cashback
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
+                            Mẫu
+                            <span>Điện Thoại</span>
+                            Mới
+                        </h3>
+                        <a class="button2" href="/TrangChu/SPTheodanhmuc/DTDD">Xem Ngay </a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item item2">
+                <div class="container">
+
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>
+                            advanced
+                            <span>Wireless</span> earbuds
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
+                            Best
+                            <span>Headphone</span>
+                        </h3>
+                        <a class="button2" href="product.html">Shop Now </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item item3">
+                <div class="container">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>
+                            Get flat
+                            <span>10%</span> Cashback
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
+                            New
+                            <span>Standard</span>
+                        </h3>
+                        <a class="button2" href="product.html">Shop Now </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item item4">
+                <div class="container">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>
+                            Get Now
+                            <span>40%</span> Discount
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
+                            Today
+                            <span>Discount</span>
+                        </h3>
+                        <a class="button2" href="product.html">Shop Now </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!--Kết Thúc Quảng Cáo-->
+<div class="f-wrap" style="left: 0px; display: block;">
+    <div class="fs-itit">
+        <h2 style="Text-align:left; color:black; padding:14px 10px; font-size:20px; font-weight:600;"> 15 Sản Phẩm Mới Nhất</h2>
+        <a class="fs-ictall" href="/TrangChu/SPTheodanhmuc/PC">Xem Thêm</a>
+    </div>
+    <div id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div id="owl-demo" class="owl-carousel">
+                        @foreach (var Hang in Model)
+                        {
+                            <div class="item" style="width:90%; height:300px; margin:0 10px;">
+                                <!--#region Ngành hàng chính -->
+                                <a href="@Url.Action("Details", "TrangChu", new { id = Hang.MaHH})">
+                                    <div class="hoverimage">
+                                        <img style="width:200px; height:200px;"  alt="@Hang.TenHH" src="~/images/@Hang.HinhAnh" />
+                                    </div>
+                                    <h4 class="name">
+                                        @Hang.TenHH
+                                    </h4>
+                                    <div class="price" style="padding-bottom:10px;"><strong>@String.Format("{0:0,0}", Hang.GiaBan)₫</strong></div>
+                                </a>
+                                <!--#endregion -->
+                            </div>
+                        }
+
+                    </div>
+                    <div class="owl-buttons">
+                        <div class="btn prev">‹</div>
+                        <div class="btn next">›</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="f-wrap" style="left: 0px;  display: block;">
+    <div class="fs-itit">
+        <h2 style="Text-align:left; color:black; padding:14px 10px; font-size:20px; font-weight:600;"> Máy Bàn Mới Nhất</h2>
+        <a class="fs-ictall" href="/TrangChu/SPTheodanhmuc/PC">Xem Thêm</a>
+    </div>
+    <div class="DanhMucHang">
+        @Html.Action("SPTheoLoai", "TrangChu", new { id = "PC" })
+    </div>
+
+
+</div>
+<div class="f-wrap" style="left: 0px; display: block;">
+    <div class="fs-itit">
+        <h2 style="Text-align:left; color:black; padding:14px 10px; font-size:20px; font-weight:600;"> Laptop Mới Nhất</h2>
+        <a class="fs-ictall" href="/TrangChu/SPTheodanhmuc/LAP">Xem Thêm</a>
+    </div>
+    <div class="DanhMucHang">
+        @Html.Action("SPTheoLoai", "TrangChu", new { id = "LAP" })
+    </div>
+
+
+</div>
+
+<script src="~/js/jquery-1.9.1.min.js"></script>
+<script src="~/owl-carousel/owl.carousel.js"></script>
+<style>
+
+    #owl-demo .item {
+        background: #FFF;
+        color: #000;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        text-align: center;
+    }
+
+    .customNavigation {
+        text-align: center;
+    }
+
+        .customNavigation a {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+        var owl = $("#owl-demo");
+
+        owl.owlCarousel({
+
+            items: 5, //10 items above 1000px browser width
+            itemsDesktop: [1000, 20], //5 items between 1000px and 901px
+            itemsDesktopSmall: [900, 3], // 3 items betweem 900px and 601px
+            itemsTablet: [600, 2], //2 items between 600 and 0;
+            itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+
+        });
+
+        // Custom Navigation Events
+        $(".next").click(function () {
+            owl.trigger('owl.next');
+        })
+        $(".prev").click(function () {
+            owl.trigger('owl.prev');
+        })
+        $(".play").click(function () {
+            owl.trigger('owl.play', 1000);
+        })
+        $(".stop").click(function () {
+            owl.trigger('owl.stop');
+        })
+
+
+    });
+</script>
+
+<script src="~/js/bootstrap-collapse.js"></script>
+<script src="~/js/js/bootstrap-transition.js"></script>
+<script src="~/js/bootstrap-tab.js"></script>
+<script src="~/js/google-code-prettify/prettify.js"></script>
+<script src="~/js/application.js"></script>

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script src="~/Scripts/Facebook.js"></script>
+
+<link href="~/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/css/sb-admin-2.css" rel="stylesheet" />
+@model ShopDTDD.Models.tb_TaiKhoan
+@using (Html.BeginForm())
+{
+    <div class="card-body p-0">
+
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <div class="text-cen    ter">
+                        <h1 class="h4 mb-4" style="color:white">Welcome Back!</h1>
+                        <h4 style="color:red; text-align:center"> @ViewBag.Thongbao</h4>
+                    </div>
+                    <form class="user">
+                        <div class="form-group">
+                            @Html.TextBox("Email", null, new { @class = "form-control form-control-user", @placeholder = "Email" })
+                            @ViewData["Loi1"]
+                            <!--<input class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" type="email" placeholder="Enter Email Address...">-->
+                        </div>
+                        <div class="form-group">
+                            @Html.Password("Pass", null, new { @class = "form-control form-control-user", @placeholder = "Password" })
+                            @ViewData["Loi2"]
+                            <!--<input class="form-control form-control-user" id="exampleInputPassword" type="password" placeholder="Password">-->
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox small">
+                                <input class="custom-control-input" id="customCheck" type="checkbox">
+                                <label class="custom-control-label" for="customCheck">Remember Me</label>
+                            </div>
+                        </div>
+                        <input type="Submit" value="Logging Account" class="btn btn-primary btn-user btn-block" />
+
+                        <hr>
+                        <a class="btn btn-google btn-user btn-block" href="/Home/GoogleDangNhap">
+                            <i class="fab fa-google fa-fw"></i> Login with Google
+                        </a>
+                        
+                        <a class="btn btn-facebook btn-user btn-block" href="/Home/FacebookDangNhap">
+                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                        </a>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="/Home/DangKy">Create an Account!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

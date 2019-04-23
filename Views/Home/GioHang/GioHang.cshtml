@@ -1,0 +1,135 @@
+﻿@using ShopDTDD.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link href="~/css/bootstrapwatch.css" rel="stylesheet" />
+<link href="~/css/styleWatch.css" rel="stylesheet" />
+
+@*<h2 style="text-align:center; color:orange">THÔNG TIN GIỎ HÀNG</h2>
+
+<div class="shopping-cart">
+
+
+    <table align="center" border="1">
+        <tr style="text-align:center; font-weight:bold; color:orangered">
+            <td>  Mã Hàng Hóa </td>
+            <td> Tên Hàng Hóa </td>
+            <td> Ảnh bìa </td>
+            <td> Số lượng </td>
+            <td> Đơn giá </td>
+            <td> Thành tiền </td>
+            <td width="50px">Chi Tiết</td>
+            <td width="50px">Xóa</td>
+            <td width="50px">Cập Nhật</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="shopping-cart-item" style="text-align:center; font-weight:bold; ">
+                <td> @item.iMaHH </td>
+                <td> @item.sTenHH</td>
+                <td><img src="~/images/@item.sHinhAnh" style="max-height:200px; max-width:100px"></td>
+                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @iMaSP = item.iMaHH }))
+                {
+                    <td>
+                        <input type="number" min="1" name="txtSoLuong" value="@item.iSoLuong" style="background-color:yellow" />
+                    </td>
+                    <td>@String.Format("{0:0,0}", item.dGiaBan) </td>
+                    <td>@String.Format("{0:0,0}", item.dThanhTien) </td>
+                    <td> <a href=""> Chi tiết </a></td>
+                    <td>@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSP = item.iMaHH })</td>
+                    <td> <input type="submit" value="Cập Nhật" /></td>
+                }
+            </tr>
+        }
+        <tr style="font-weight: bold; text-align:right; color:red">
+            <td colspan="4"> Tổng số lượng: @Session["SoHang"] </td>
+            <td colspan="5"> Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ </td>
+        </tr>
+        <tr style="font-weight: bold; color:blue; text-align:right ">
+            <td colspan="9">
+                @Html.ActionLink("Xóa Giỏ Hàng", "XoaTatCaGiohHang")
+            </td>
+        
+    </table>
+</div>
+<a href="@Url.Action("DatHang", "GioHang")" class="btn btn-large btn-block btn-danger btn-checkout" style="text-align:center;margin:auto; width:200px;">
+    ÐẠT HÀNG
+</a>*@
+
+
+
+<div class="account-in">
+    <div class="container">
+        <div class="check_box">
+            <div class="col-md-9 cart-items">
+                <h1>Thông Tin Giỏ Hàng(<span style="color:orangered">@Session["SoHang"]</span>)</h1>
+                <script>$(document).ready(function(c) {
+					$('.close1').on('click', function(c){
+						$('.cart-header').fadeOut('slow', function(c){
+							$('.cart-header').remove();
+						});
+						});
+					});</script>
+@foreach (var item in Model)
+{                <div class="cart-header" style="background-color:#222">
+                     <div class="close1">@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSP = item.iMaHH })</div>
+                    <div class="cart-sec simpleCart_shelfItem">
+                        <div class="cart-item cyc">
+                            <img class="img-responsive" alt="" src="~/images/@item.sHinhAnh">
+                        </div>
+                        <div class="cart-item-info">
+                            <h3><a href="@Url.Action("Details", "TrangChu", new { id = item.iMaHH})">@item.sTenHH</a><span>Model No: @item.iMaHH</span></h3>
+                            <ul class="qty">
+                                <li><p>Size : 5</p></li>
+                                <li><p>Số Lượng : @item.iSoLuong</p></li>
+                            </ul>
+                            <div class="delivery">
+                                <p>Service Charges : Rs.100.00</p>
+                                <span>Giao Trong 5-7 ngày nữa</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+}
+                
+
+            </div>
+            <div class="col-md-3 cart-total">
+                <a class="continue" href="~/TrangChu/Index">Tiếp Tục Mua Sắm</a>
+                <div class="price-details">
+                    <h3>Bảng Đơn Giá</h3>
+                    <span>Tổng Tiền</span>
+                    <span class="total1">@String.Format("{0:0,0}", ViewBag.TongTien) VNĐ </span>
+                    <span>Giảm Giá</span>
+                    <span class="total1">---</span>
+                    <span>Phí Vận Chuyển</span>
+                    <span class="total1"></span>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="total_price">
+                    <li class="last_price"> <h4>Tổng</h4></li>
+                    <li class="last_price"><span>@String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</span></li>
+                    <div class="clearfix"> </div>
+                </ul>
+                <div class="clearfix"></div>
+                <a class="order" href="@Url.Action("DatHang", "GioHang")">Xác Nhận Đơn Hàng</a>
+                @*<div class="total-item">
+                    <h3>OPTIONS</h3>
+                    <h4>COUPONS</h4>
+                    <a class="cpns" href="#">Apply Coupons</a>
+                    <p><a href="#">Log In</a> to use accounts - linked coupons</p>
+                </div>*@
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+
+

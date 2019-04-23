@@ -1,0 +1,112 @@
+﻿@model ShopDTDD.Models.tb_HangHoa
+@using System.IO
+@{
+    ViewBag.Title = "SuaSP";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+<head>
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+</head>
+
+<h2>ĐIỀU CHỈNH THÔNG TIN HÀNG HÓA</h2>
+
+@using (Html.BeginForm("SuaSP", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.MaHH)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaHH, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="font:18px; padding: 5px 0 0 5px"> @ViewBag.MaHH</div>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaLoai")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenHH, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenHH)   
+                @Html.ValidationMessageFor(model => model.TenHH)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaBan)
+                @Html.ValidationMessageFor(model => model.GiaBan)
+            </div>
+        </div>
+
+       @**<div class="form-group">
+            @Html.LabelFor(model => model.MoTaSP, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="MoTaSP">@Model.MoTaSP</textarea>
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.MoTaSP, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MoTaSP)
+                @Html.ValidationMessageFor(model => model.MoTaSP)
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="fileupload" placeholder="Chọn Hình Ảnh" />
+                @ViewBag.Thongbao
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HinhAnh,new { @class = "control-label col-md-2" })
+            <div class="col-md-10">Chọn ảnh mới
+                <input type="file" name="fileUpload" placeholder="Chọn Hình Ảnh" />
+                <img src="@Url.Content("~/images/"+ Model.HinhAnh)" width="100" /> (Ảnh hiện tại)
+                
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoLuong, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuong)
+                @Html.ValidationMessageFor(model => model.SoLuong)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaKhuyenMai, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaKhuyenMai)
+                @Html.ValidationMessageFor(model => model.GiaKhuyenMai)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "MatHang")
+</div>
+
+

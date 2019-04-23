@@ -1,0 +1,65 @@
+﻿@model ShopDTDD.Models.tb_HangHoa
+@{
+    ViewBag.Title = "DetailsSP";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+<h2>CHI TIẾT THÔNG TIN HÀNG HÓA</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã hàng hóa:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaHH)
+        </dd>
+        <dt>
+            Mã loại:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaLoai)
+        </dd>
+        <dt>
+            Tên hàng hóa:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenHH)
+        </dd>
+        <dt>
+            Giá bán:
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.GiaBan) VNĐ
+        </dd>
+        <dt>
+            Mô tả:
+        </dt>
+        <dd style="width:600px; text-align:justify">
+            @Html.DisplayFor(model => model.MoTaSP)
+        </dd>
+        <dt>
+            Hình ảnh:
+        </dt>
+        <dd>
+            <img src="@Url.Content("~/images/"+  Model.HinhAnh)" width="120px" />
+        </dd>
+        <dt>
+            Số lượng:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+        <dt>
+            Giá khuyến mãi:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GiaKhuyenMai)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ĐIỀU CHỈNH", "SuaSP", new { id = Model.MaHH }) |
+    @Html.ActionLink("TRỞ VỀ", "MatHang")
+</p>
+
+

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLBH" Class="dbQLBHDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-EH88R88\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLBHConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="TenTK" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_TaiKhoan" Member="tb_TaiKhoans">
+    <Type Name="tb_TaiKhoan">
+      <Column Name="MaTK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTK" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ho" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="tb_TaiKhoan_tb_HoaDon" Member="tb_HoaDons" ThisKey="TenTK" OtherKey="TenTK" Type="tb_HoaDon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_CTHD" Member="tb_CTHDs">
+    <Type Name="tb_CTHD">
+      <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaHH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MaCTHD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="tb_HangHoa_tb_CTHD" Member="tb_HangHoa" ThisKey="MaHH" OtherKey="MaHH" Type="tb_HangHoa" IsForeignKey="true" />
+      <Association Name="tb_HoaDon_tb_CTHD" Member="tb_HoaDon" ThisKey="MaHD" OtherKey="MaHD" Type="tb_HoaDon" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_HangHoa" Member="tb_HangHoas">
+    <Type Name="tb_HangHoa">
+      <Column Name="MaHH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaLoai" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TenHH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="MoTaSP" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GiaKhuyenMai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tb_HangHoa_tb_CTHD" Member="tb_CTHDs" ThisKey="MaHH" OtherKey="MaHH" Type="tb_CTHD" />
+      <Association Name="tb_HangHoa_tb_HinhAnh" Member="tb_HinhAnhs" ThisKey="MaHH" OtherKey="MaHH" Type="tb_HinhAnh" />
+      <Association Name="tb_Menu_tb_HangHoa" Member="tb_Menu" ThisKey="MaLoai" OtherKey="MaLoai" Type="tb_Menu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_HinhAnh" Member="tb_HinhAnhs">
+    <Type Name="tb_HinhAnh">
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(250) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaHH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tb_HangHoa_tb_HinhAnh" Member="tb_HangHoa" ThisKey="MaHH" OtherKey="MaHH" Type="tb_HangHoa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_HoaDon" Member="tb_HoaDons">
+    <Type Name="tb_HoaDon">
+      <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NgayLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tong" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TenTK" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayDat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NgayGiao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DaThanhToan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TinhTrangGiaoHang" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DuyetDH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tb_HoaDon_tb_CTHD" Member="tb_CTHDs" ThisKey="MaHD" OtherKey="MaHD" Type="tb_CTHD" />
+      <Association Name="tb_TaiKhoan_tb_HoaDon" Member="tb_TaiKhoan" ThisKey="TenTK" OtherKey="TenTK" Type="tb_TaiKhoan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_Menu" Member="tb_Menus">
+    <Type Name="tb_Menu">
+      <Column Name="MaLoai" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Target" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="tb_Menu_tb_HangHoa" Member="tb_HangHoas" ThisKey="MaLoai" OtherKey="MaLoai" Type="tb_HangHoa" />
+    </Type>
+  </Table>
+</Database>

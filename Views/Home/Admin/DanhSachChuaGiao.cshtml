@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_HoaDon>
+
+@{
+    ViewBag.Title = "DanhSachChuaGiao";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>DanhSachChuaGiao</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTK)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayGiao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaThanhToan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    using (Html.BeginForm("DuyetGiaoHang", "Admin", new { @madh = item.MaHD }))
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayLap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaThanhToan)
+        </td>
+        <td>
+            <button type="submit" value="" title="Duyệt Giao Hàng" class="fa fa-check btn btn-success btn-sm" />
+        </td>
+    </tr>
+    }
+}
+
+</table>

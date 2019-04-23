@@ -1,0 +1,89 @@
+﻿@using ShopDTDD.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<ShopDTDD.Models.tb_HangHoa>
+    
+@helper Truncate(string input, int length)
+{
+if (input.Length < length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+
+@{
+    ViewBag.Title = "MatHang";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>Các Loại Mặt Hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MaLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TenHH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().GiaBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MoTaSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SoLuong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenHH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td>
+
+            <img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh)" width="100" height="100" />
+            
+        </td>
+        <td>
+            @Truncate(@item.MoTaSP,100)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.ActionLink("Add Images", "ThemHinh", new { MaHH = item.MaHH }) |
+            @Html.ActionLink("Edit", "SuaSP", new { id = item.MaHH }) |
+            @Html.ActionLink("Details", "DetailsSP", new { id = item.MaHH }) |
+            @Html.ActionLink("Delete", "XoaSP", new { id = item.MaHH })
+        </td>
+    </tr>
+}
+
+</table>
+@* Tao liên kết các trang  *@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang" style="display:inline">
+    
+        @Html.PagedListPager(Model, page => Url.Action("MatHang", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

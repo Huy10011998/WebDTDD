@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ShopDTDD.Models.Admin>
+
+@{
+    ViewBag.Title = "TaiKhoanAdmin";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>TaiKhoanAdmin</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Tài Khoản Admin
+        </th>
+        <th>
+            Mật Khẩu
+        </th>
+        <th>
+            Tác Vụ
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTK)
+            </td>
+            <td>
+                *****
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.TenTK })
+            </td>
+        </tr>
+    }
+
+</table>

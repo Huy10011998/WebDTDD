@@ -1,0 +1,72 @@
+﻿@model ShopDTDD.Models.tb_HangHoa
+@{
+    ViewBag.Title = "XoaSP";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>XÁC NHẬN THÔNG TIN HÀNG HÓA CẦN XÓA</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            MaHH:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaHH)
+        </dd>
+        <dt>
+            Mã loại:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaLoai)
+            </
+        </dd>
+        <dt>
+            Tên hàng hóa:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenHH)
+        </dd>
+        <dt>
+            Giá bán:
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.GiaBan) VNĐ
+        </dd>
+        <dt>
+            Mô tả:
+        </dt>
+        <dd style="width:600px; text-align:justify">
+            @Html.DisplayFor(model => model.MoTaSP)
+        </dd>
+        <dt>
+            Hình ảnh:
+        </dt>
+        <dd>
+            <img src="@Url.Content("~/images/"+  Model.HinhAnh)" width="120px" />
+        </dd>
+        <dt>
+            Số lượng:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+        <dt>
+            Giá khuyến mãi:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GiaKhuyenMai)
+        </dd>
+    </dl>
+</div>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("TRỞ VỀ", "MatHang")
+        </div>
+    }
+</div>
+

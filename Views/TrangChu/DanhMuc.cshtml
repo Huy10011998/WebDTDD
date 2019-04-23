@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ShopDTDD.Models.tb_Menu>
+
+<div class="list-group" >
+    @foreach (var item in Model)
+    {
+        <li><a  style="background-color:#e3e3e3; color:#888; " href="@Url.Action("SPTheodanhmuc", "TrangChu", new { id = item.MaLoai})">@item.TenLoai</a></li>
+    }
+</div> 

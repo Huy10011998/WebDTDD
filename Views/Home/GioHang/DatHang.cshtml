@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using ShopDTDD.Models
+@model List<GioHang>
+<link href="~/css/bootstrap.css" rel="stylesheet" />
+
+<h2 style="text-align:center; color:orange;">THÔNG TIN HÀNG HÓA</h2>
+
+<div class="col-xs-8 cart-col-1">
+    <form class="shopping-cart2"  >
+        <div class="shopping-cart-item" style="align-self:center">
+            <table align="center" border="1">
+                <tr style="text-align:center; font-weight:bold">
+                    <td> Mã hàng hóa </td>
+                    <td> Tên hàng hóa </td>
+                    <td> Hình Ảnh</td>
+                    <td> Số luợng </td>
+                    <td> Ðon giá </td>
+                    <td> Thành tiền </td>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr style="text-align:center; font-weight:bold">
+                        <td> @item.iMaHH </td>
+                        <td> @item.sTenHH</td>
+                        <td><img src="~/images/@item.sHinhAnh" style="width:100px; height:100px;"></td>
+                        @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @iMaSP = item.iMaHH }))
+                        {
+                            <td>
+                                @item.iSoLuong
+                            </td>
+                            <td>@String.Format("{0:0,0}", item.dGiaBan) </td>
+                            <td>@String.Format("{0:0,0}", item.dThanhTien) </td>
+                        }
+                    </tr>
+                }
+                <tr style="font-weight: bold; text-align:right; color:red">
+                    <td colspan="3"> Số luợng: @ViewBag.TongSoLuong </td>
+                    <td colspan="3"> Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNÐ </td>
+                </tr>
+                <tr style="font-weight: bold; color:blue; text-align:right ">
+                    <td colspan="6">
+                        @Html.ActionLink("TRỞ VỀ GIỎ HÀNG", "GioHang", "GioHang")
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+
+
+
+<h2 style="text-align:center; color:orange">THÔNG TIN ÐẶT HÀNG</h2>
+@{
+    dbQLBHDataContext data = new dbQLBHDataContext();
+    tb_TaiKhoan tk = (tb_TaiKhoan)Session["TaiKhoanKH"];
+}
+<div class="shopping-cart2">
+    <table align="center">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height:40px">
+                <td> Tài Khoản:</td>
+                <td style="font-weight:bold">  @tk.TenTK </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Họ tên khách hàng:</td>
+                <td style="font-weight:bold">  @tk.Ten </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Ðịa chỉ:</td>
+                @if (ViewBag.DiaChi == null)
+                {
+                    <td>
+                        @Html.TextBox("DiaChi", null, new { @class = "form-control form-control-user", @placeholder = "Dia Chi" })
+                    </td>
+                    @ViewData["LoiDC"]
+                }
+                else
+                {
+                    string dchi = ViewBag.DiaChi;
+                    <td>
+                        @Html.TextBox("DiaChi", dchi, new { @class = "form-control form-control-user", @placeholder = "Dia Chi" })
+                    </td>
+                }
+            </tr>
+            <tr style="height:40px">
+                <td> Ngày đặt:</td>
+                <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Ngày giao hàng:</td>
+                <td style="font-weight:bold"> Trong 7 Ngày Nữa </td>
+            </tr>
+            <tr style="height:40px">
+                <td></td>
+                <td>
+                    <input type="Submit" class="btn btn-large btn-block btn-danger btn-checkout" value="ÐỒNG Ý ÐẶT HÀNG" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>

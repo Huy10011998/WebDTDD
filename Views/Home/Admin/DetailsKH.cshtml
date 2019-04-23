@@ -1,0 +1,59 @@
+﻿@model ShopDTDD.Models.tb_TaiKhoan
+
+@{
+    ViewBag.Title = "DetailsKH";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>DetailsKH</h2>
+
+<div>
+    <h4>tb_TaiKhoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TenTK }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
